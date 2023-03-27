@@ -3,7 +3,6 @@ const styles = StyleSheet.create({
     container:{
         width:'100%',
         padding:10,
-
     },
     button: {
         backgroundColor:'white',
@@ -11,6 +10,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems:'center',
         borderRadius: 20,
+        bottom:0,       
     },
     text: {
         fontSize:12,
