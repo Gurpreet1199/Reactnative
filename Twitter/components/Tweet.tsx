@@ -1,18 +1,11 @@
 import { View , Text , Image , StyleSheet } from "react-native";
-type User = {
-  id: String;
-  name: string;
-  username: string;
-  image? : string;
-}
-type tweetType = {
-  content: string;
-  user : User;
-}
+import { Entypo } from '@expo/vector-icons';
+import { tweetType } from "../types";
+import IconButton from "./IconButton";
 type tweetProps ={
   tweet: tweetType;
-}
-const Tweet = ({tweet} : tweetProps) => {
+};
+const Tweet = ({tweet } : tweetProps) => {
   return (
     <View style={styles.container}>
       <Image
@@ -20,8 +13,25 @@ const Tweet = ({tweet} : tweetProps) => {
        style={styles.UserImage}
       />
       <View style={styles.mainContainer}>
-        <Text style={styles.name}>{tweet.user.name}</Text>
+        <View style={{flexDirection:'row'}}>
+          <Text style={styles.name}>{tweet.user.name}</Text>
+          <Text style={styles.username}>{tweet.user.username} .2h</Text>
+          <Entypo 
+            name="dots-three-horizontal" 
+            size={16} 
+            color="gray" 
+            style={{marginLeft:"auto"}}
+          />
+        </View>
         <Text style={styles.content}>{tweet.content}</Text>
+        {tweet.image && <Image src={tweet.image} style={styles.image}/>} 
+        <View style={styles.footer}>
+          <IconButton icon= "comment" text={tweet.numberOfComments}/>
+          <IconButton icon= "retweet" text={tweet.numberOfRetweets}/>
+          <IconButton icon= "heart" text={tweet.numberOfLikes}/>
+          <IconButton icon= "chart" text={tweet.impressions || 0}/>
+          <IconButton icon= "share-apple"/>
+        </View>
       </View>
     </View>
   );
@@ -33,10 +43,21 @@ const styles = StyleSheet.create({
     borderBottomWidth:StyleSheet.hairlineWidth,
     borderColor:'lightgrey',
   },
+  footer:{
+    flexDirection: 'row',
+    marginVertical:5,
+    justifyContent: 'space-between',
+  },
   UserImage: {
     width:50,
     height:50,
     borderRadius:50,
+  },
+  image :{
+    width: '100%',
+    aspectRatio: 4/3,
+    marginVertical:10,
+    borderRadius:10,
   },
   mainContainer : {
     marginLeft:10,
@@ -44,6 +65,10 @@ const styles = StyleSheet.create({
   },
   name :{
     fontWeight : '600',
+  },
+  username:{
+    color:'gray',
+    marginLeft:5,
   },
   content :{
     lineHeight: 20,
