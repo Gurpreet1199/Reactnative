@@ -44,10 +44,18 @@ function App(): React.JSX.Element {
     <>
       <StatusBar/>
     <View style={styles.topbar}>
-      <Text>User Profile/L</Text>
-      <Text>Filter</Text>
+      <View style={styles.topbarView}>
+        <Text >User Profile/L</Text>
+      </View>
+      <View style={styles.topbarView}>
+        <Text>Filter</Text>
+      </View>
+      <View style={styles.topbarView}>
       <Text>Chats</Text>
+      </View>
+      <View style={styles.topbarView}>
       <Text>Notifications</Text>
+      </View>
     </View>
 
     <View style={{padding:10}}>
@@ -69,6 +77,13 @@ function App(): React.JSX.Element {
 }
 
 const styles = StyleSheet.create({
+  topbarView:{
+    fontStyle:'normal',
+    fontWeight:'500',
+    flex:1,
+    borderColor:'#12aaa1',
+    borderWidth:1
+  },
   flatlistitems:{
     padding:10,
     backgroundColor:'#cca123'
